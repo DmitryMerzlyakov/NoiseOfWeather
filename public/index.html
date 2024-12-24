@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Noise Of Weather</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      window.application = {
+        cards: [
+          {
+            id: 0,
+            weatherType: 'summer',
+            img: './assets/summer-bg.jpg',
+            icon: './assets/icons/sun.svg',
+            sound: './assets/sounds/summer.mp3'
+          },
+          {
+            id: 1,
+            weatherType: 'rain',
+            img: './assets/rainy-bg.jpg',
+            icon: './assets/icons/cloud-rain.svg',
+            sound: './assets/sounds/rain.mp3'
+          },
+          {
+            id: 2,
+            weatherType: 'winter',
+            img: './assets/winter-bg.jpg',
+            icon: './assets/icons/cloud-snow.svg',
+            sound: './assets/sounds/winter.mp3'
+          },
+        ],
+        activeBlock: ''
+      };
+    </script>
+  </body>
+</html>
