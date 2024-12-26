@@ -30,11 +30,12 @@ export const createWeatherItem = (items: TApllication[], paretn: HTMLDivElement)
       buttons.map(btn => {btn !== button && btn.querySelector('.item__input')?.remove()})
       paretn.style.backgroundImage = `url(${(item.img)})`
       button.appendChild(volume)
-      toggleAudio(index, items)
+      toggleAudio(index, items, image, button)
     })
-
+  
     buttons.push(button)
     audioControl(volume)
+
     paretn.appendChild(button)
   })
 }
