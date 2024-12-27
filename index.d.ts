@@ -12,8 +12,7 @@ export type TApllication = {
 declare global {
   interface Window {
     application: {
-      activeBlock: TWeather;
-      cards: TApllication[],
+      cards: TApllication[]
     }
   }
 }
