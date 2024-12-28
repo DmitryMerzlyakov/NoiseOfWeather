@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "start": "npx webpack serve --config webpack.config.dev.js",
-    "build": "npx webpack --config webpack.config.prod.js"
+    "build": "npx webpack --config webpack.config.prod.js",
+    "build:dev":	"npx webpack --config webpack.config.dev.js"
   },
   "author": "Dmitry Merzlyakov",
   "license": "ISC",

@@ -1,43 +1,43 @@
-import { audioControl, toggleAudio } from './audio'
+import { audioControl, toggleAudio } from "./audio";
 
-import { TApllication } from '..'
+import { TApllication } from "..";
 
-export const createWeatherItem = (items: TApllication[], paretn: HTMLDivElement) => {
-  const buttons: HTMLButtonElement[] = []
+const buttonsWrapper = document.createElement("div");
+buttonsWrapper.classList.add("wrapper");
+const volumeControl = document.createElement("input");
+volumeControl.type = "range";
+volumeControl.min = "0";
+volumeControl.max = "1";
+volumeControl.step = "0.1";
+volumeControl.value = "0.5";
 
-  items.map((item, index) => {
-    const button = document.createElement('button')
-    button.classList.add('item')
-    button.style.backgroundImage = `url(${item.img})`
-    button.style.backgroundSize = 'cover'
-    button.style.backgroundPosition = 'center'
+const imagePause = document.createElement("img");
+imagePause.classList.add("item__imgPause");
+imagePause.src = "../assets/icons/pause.svg";
+imagePause.alt = "pause";
 
-    const image = document.createElement('img')
-    image.classList.add('item__img')
-    image.src = item.icon
-    image.alt = item.weatherType
-    button.appendChild(image)
+export const createWeatherItem = (
+  items: TApllication[],
+  paretn: HTMLDivElement,
+) => {
+  items.forEach((card, index) => {
+    const button = document.createElement("button");
+    button.classList.add("item");
+    button.style.backgroundImage = `url(${card.img})`;
+    button.style.backgroundSize = "cover";
+    button.style.backgroundPosition = "center";
+    button.innerHTML = `<img src="${card.icon}" alt="${card.weatherType} icon">`;
+    buttonsWrapper.appendChild(button);
 
-    const volume = document.createElement('input')
-    volume.classList.add('item__input')
-    volume.type = 'range'
-    volume.min = '0'
-    volume.max = '1'
-    volume.step = '0.1'
-    volume.value = '0.5'
-    
-    button.addEventListener('click', () => {   
-      buttons.map(btn => {btn !== button && btn.querySelector('.item__input')?.remove()})
-      paretn.style.backgroundImage = `url(${(item.img)})`
-      paretn.style.backgroundSize = 'cover'
-      paretn.style.backgroundPosition = 'center'
-      button.appendChild(volume)
-      toggleAudio(index, items, image, button)
-    })
-  
-    buttons.push(button)
-    audioControl(volume)
+    button.addEventListener("click", () => {
+      paretn.style.backgroundImage = `url(${card.img})`;
+      paretn.style.backgroundSize = "cover";
+      paretn.style.backgroundPosition = "center";
 
-    paretn.appendChild(button)
-  })
-}
+      toggleAudio(index, items, button);
+    });
+  });
+  audioControl(volumeControl);
+  paretn.appendChild(buttonsWrapper);
+  paretn.appendChild(volumeControl);
+};
