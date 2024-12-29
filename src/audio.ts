@@ -7,7 +7,7 @@ let currentCardIndex: number = -1;
 export const toggleAudio = (
   index: number,
   cards: TApllication[],
-  button: HTMLButtonElement,
+  button: HTMLButtonElement | null,
 ) => {
   const isCurrentCard = currentCardIndex === index;
   currentAudio &&
@@ -42,7 +42,7 @@ export const audioControl = (element: HTMLInputElement) => {
 
 const updateIcon = (
   isUpdate: boolean,
-  button: HTMLButtonElement,
+  button: HTMLButtonElement | null,
   card: TApllication,
 ) => {
   const imagePause = document.createElement("img");
@@ -50,8 +50,8 @@ const updateIcon = (
   imagePause.src = "../assets/icons/pause.svg";
   imagePause.alt = "pause";
   isUpdate
-    ? button.querySelector("img")?.setAttribute("src", imagePause.src)
-    : button.querySelector("img")?.setAttribute("src", card.icon);
+    ? button?.querySelector("img")?.setAttribute("src", imagePause.src)
+    : button?.querySelector("img")?.setAttribute("src", card.icon);
 };
 
 const resetOtherIcons = (cards: TApllication[], index: number) => {

@@ -20,23 +20,29 @@ export const createWeatherItem = (
   items: TApllication[],
   paretn: HTMLDivElement,
 ) => {
-  items.forEach((card, index) => {
+  items.forEach((card) => {
     const button = document.createElement("button");
     button.classList.add("item");
     button.style.backgroundImage = `url(${card.img})`;
     button.style.backgroundSize = "cover";
     button.style.backgroundPosition = "center";
+    button.dataset.id = `${card.id}`;
     button.innerHTML = `<img src="${card.icon}" alt="${card.weatherType} icon">`;
     buttonsWrapper.appendChild(button);
+  });
 
-    button.addEventListener("click", () => {
+  buttonsWrapper.addEventListener("click", (e) => {
+    const target = e.target as HTMLButtonElement;
+    const item = target.closest("button");
+    if (item?.dataset.id) {
+      const card = items[parseInt(item.dataset.id)];
       paretn.style.backgroundImage = `url(${card.img})`;
       paretn.style.backgroundSize = "cover";
       paretn.style.backgroundPosition = "center";
-
-      toggleAudio(index, items, button);
-    });
+      toggleAudio(card.id, items, target.closest("button"));
+    }
   });
+
   audioControl(volumeControl);
   paretn.appendChild(buttonsWrapper);
   paretn.appendChild(volumeControl);
